@@ -21,7 +21,7 @@ function App() {
   const handleClick = () => {
     axios.post('http://localhost:3001/login', {login: login, password: password}).then((data)=>{
       // При успехе
-      toast.success("Успех")
+      toast.success(data.data.message)
     }).catch((e)=> {
       // При ошибке
       const status = e.response.status
@@ -32,10 +32,6 @@ function App() {
 
         case 403:
             toast.error(e.response.data.message)
-          break;
-
-        case 402:
-            toast.success(e.response.data.message)
           break;
       
         default:
